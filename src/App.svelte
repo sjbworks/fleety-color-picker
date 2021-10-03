@@ -1,5 +1,27 @@
 <script lang="ts">
-  import {onMount} from 'svelte'
+  import { onMount, createEventDispatcher } from 'svelte'
+  
+  // import nodeVibrant from 'https://cdn.skypack.dev/node-vibrant'
+  import Vibrant from 'node-vibrant'
+
+  let  avatar, fileinput;
+	
+	const onFileSelected =async(e)=>{
+    e.preventDefault()
+    e.stopPropagation()
+    let image = e.target.files[0]
+    // let reader = new FileReader()
+    // reader.readAsDataURL(image)
+    // reader.onload = e => {
+    //   avatar = e.target.result
+    // }
+    const colors = await Vibrant.from(image).getPalette()
+    await console.log(colors)
+  }
+
+  // const img = new Image()
+  // img.src =　'https://i.picsum.photos/id/896/200/300.jpg?hmac=sgs51khfREKwE_t-0S7LpXpYz2CBlBAoeXTFuoHo-l4'
+  // Vibrant.from(img).getPalette((err, palette) => console.log(palette))
 
   let count: number = 0
   onMount(() => {
@@ -65,6 +87,9 @@
 <div class="App">
   <header class="App-header">
     <img src="/logo.svg" class="App-logo" alt="logo"/>
+    <label for="">
+      <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} bind:this={fileinput} >
+    </label>
     <p>Edit <code>src/App.svelte</code> and save to reload.</p>
     <p>Page has been open for <code>{count}</code> seconds.</p>
     <p>
