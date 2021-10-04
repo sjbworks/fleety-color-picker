@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { onMount, createEventDispatcher } from 'svelte'
-  
-  // import nodeVibrant from 'https://cdn.skypack.dev/node-vibrant'
+  import logo from './assets/svelte.png'
+  import Counter from './lib/Counter.svelte'
   import Vibrant from 'node-vibrant'
 
   let  avatar, fileinput;
-	
-	const onFileSelected =async(e)=>{
+
+  const onFileSelected =async(e)=>{
     e.preventDefault()
     e.stopPropagation()
     let image = e.target.files[0]
@@ -19,84 +18,68 @@
     await console.log(colors)
   }
 
-  // const img = new Image()
-  // img.src =　'https://i.picsum.photos/id/896/200/300.jpg?hmac=sgs51khfREKwE_t-0S7LpXpYz2CBlBAoeXTFuoHo-l4'
-  // Vibrant.from(img).getPalette((err, palette) => console.log(palette))
-
-  let count: number = 0
-  onMount(() => {
-    const interval = setInterval(() => count++, 1000)
-    return () => {
-      clearInterval(interval)
-    }
-  })
 </script>
 
+<main>
+  <img src={logo} alt="Svelte Logo" />
+  <h1>Hello Typescript!</h1>
+  <label for="">
+    <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} bind:this={fileinput} >
+  </label>
+
+  <Counter />
+
+  <p>
+    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
+    apps.
+  </p>
+
+  <p>
+    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
+    the officially supported framework, also powered by Vite!
+  </p>
+</main>
+
 <style>
-  :global(body) {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  :root {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
-  .App {
+  main {
     text-align: center;
+    padding: 1em;
+    margin: 0 auto;
   }
 
-  .App code {
-    background: #0002;
-    padding: 4px 8px;
-    border-radius: 4px;
+  img {
+    height: 16rem;
+    width: 16rem;
   }
 
-  .App p {
-    margin: 0.4rem;
-  }
-
-  .App-header {
-    background-color: #f9f6f6;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-  }
-
-  .App-link {
+  h1 {
     color: #ff3e00;
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: 100;
+    line-height: 1.1;
+    margin: 2rem auto;
+    max-width: 14rem;
   }
 
-  .App-logo {
-    height: 36vmin;
-    pointer-events: none;
-    margin-bottom: 3rem;
-    animation: App-logo-spin infinite 1.6s ease-in-out alternate;
+  p {
+    max-width: 14rem;
+    margin: 1rem auto;
+    line-height: 1.35;
   }
 
-  @keyframes App-logo-spin {
-    from {
-      transform: scale(1);
+  @media (min-width: 480px) {
+    h1 {
+      max-width: none;
     }
-    to {
-      transform: scale(1.06);
+
+    p {
+      max-width: none;
     }
   }
 </style>
-
-<div class="App">
-  <header class="App-header">
-    <img src="/logo.svg" class="App-logo" alt="logo"/>
-    <label for="">
-      <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} bind:this={fileinput} >
-    </label>
-    <p>Edit <code>src/App.svelte</code> and save to reload.</p>
-    <p>Page has been open for <code>{count}</code> seconds.</p>
-    <p>
-      <a class="App-link" href="https://svelte.dev" target="_blank" rel="noopener noreferrer">
-        Learn Svelte
-      </a>
-    </p>
-    
-  </header>
-</div>
