@@ -3,41 +3,28 @@
   import Counter from './lib/Counter.svelte'
   import Vibrant from 'node-vibrant'
 
-  let  avatar, fileinput;
+  let  uploadedImageSource, uploadedImageElement
 
-  const onFileSelected =async(e)=>{
+  const onFileSelected = (e) => {
+    const image = e.target.files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(image)
+    reader.onload = e => uploadedImageSource = e.target.result
+  }
+
+  const getColorsOfImage = async (e) => {
     e.preventDefault()
-    e.stopPropagation()
-    let image = e.target.files[0]
-    // let reader = new FileReader()
-    // reader.readAsDataURL(image)
-    // reader.onload = e => {
-    //   avatar = e.target.result
-    // }
-    const colors = await Vibrant.from(image).getPalette()
-    await console.log(colors)
+    const colors = await Vibrant.from(uploadedImageElement).getPalette()
+    console.log(colors)
   }
 
 </script>
 
 <main>
-  <img src={logo} alt="Svelte Logo" />
-  <h1>Hello Typescript!</h1>
+  <img class="uploadedImage" src="{uploadedImageSource}" alt="d" on:change={(e)=>getColorsOfImage(e)} bind:this={uploadedImageElement} />
   <label for="">
-    <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} bind:this={fileinput} >
+    <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} >
   </label>
-
-  <Counter />
-
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
 </main>
 
 <style>
