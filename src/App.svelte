@@ -1,27 +1,31 @@
 <script lang="ts">
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
   import Vibrant from 'node-vibrant'
+  import { afterUpdate } from 'svelte'
 
   let  uploadedImageSource, uploadedImageElement
 
-  const onFileSelected = (e) => {
+  const onFileSelected = async(e) => {
     const image = e.target.files[0]
     const reader = new FileReader()
     reader.readAsDataURL(image)
-    reader.onload = e => uploadedImageSource = e.target.result
+    reader.onload = (e) => uploadedImageSource = e.target.result
   }
 
-  const getColorsOfImage = async (e) => {
-    e.preventDefault()
+  const getColorsOfImage = async() => {
     const colors = await Vibrant.from(uploadedImageElement).getPalette()
     console.log(colors)
   }
 
+  $: uploadedImageElement && getColorsOfImage()
+
 </script>
 
 <main>
-  <img class="uploadedImage" src="{uploadedImageSource}" alt="d" on:change={(e)=>getColorsOfImage(e)} bind:this={uploadedImageElement} />
+  <div>
+    {#if uploadedImageSource}
+      <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} />
+    {/if}
+  </div>
   <label for="">
     <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} >
   </label>
