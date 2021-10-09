@@ -1,6 +1,5 @@
 <script lang="ts">
   import Vibrant from 'node-vibrant'
-  import { afterUpdate } from 'svelte'
 
   let  uploadedImageSource, uploadedImageElement
 
@@ -14,6 +13,12 @@
   const getColorsOfImage = async() => {
     const colors = await Vibrant.from(uploadedImageElement).getPalette()
     console.log(colors)
+    console.log(colors.DarkMuted.getHex())
+    console.log(colors.DarkVibrant.getHex())
+    console.log(colors.LightMuted.getHex())
+    console.log(colors.LightVibrant.getHex())
+    console.log(colors.Muted.getHex())
+    console.log(colors.Vibrant.getHex())
   }
 
   $: uploadedImageElement && getColorsOfImage()
