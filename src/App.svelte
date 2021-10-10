@@ -1,7 +1,7 @@
 <script lang="ts">
   import Vibrant from 'node-vibrant'
 
-  let  uploadedImageSource, uploadedImageElement
+  let  uploadedImageSource, uploadedImageElement, gradient
 
   const onFileSelected = async(e) => {
     const image = e.target.files[0]
@@ -13,27 +13,26 @@
   const getColorsOfImage = async() => {
     const colors = await Vibrant.from(uploadedImageElement).getPalette()
     console.log(colors)
-    console.log(colors.DarkMuted.getHex())
-    console.log(colors.DarkVibrant.getHex())
-    console.log(colors.LightMuted.getHex())
-    console.log(colors.LightVibrant.getHex())
-    console.log(colors.Muted.getHex())
-    console.log(colors.Vibrant.getHex())
+    const colorHexes = Object.keys(colors).map((e)=>colors[e].getHex())
+    gradient = [...new Set(colorHexes)].join(',')
+    console.log(gradient)
   }
 
-  $: uploadedImageElement && getColorsOfImage()
+  $: uploadedImageElement && uploadedImageSource && getColorsOfImage()
 
 </script>
 
-<main>
-  <div>
-    {#if uploadedImageSource}
-      <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} />
-    {/if}
+<main style="--gradient: {gradient}">
+  <div class="image-area">
+    <div>
+      {#if uploadedImageSource}
+        <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} />
+      {/if}
+    </div>
+    <label for="">
+      <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} >
+    </label>
   </div>
-  <label for="">
-    <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} >
-  </label>
 </main>
 
 <style>
@@ -44,8 +43,12 @@
 
   main {
     text-align: center;
-    padding: 1em;
     margin: 0 auto;
+    background: linear-gradient(var(--gradient));
+  }
+
+  .image-area {
+    backdrop-filter: blur(100px);
   }
 
   img {
