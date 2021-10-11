@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Vibrant from 'node-vibrant'
+  import ColorThief from 'colorthief'
 
   let  uploadedImageSource, uploadedImageElement, gradient
 
@@ -11,10 +11,10 @@
   }
 
   const getColorsOfImage = async() => {
-    const colors = await Vibrant.from(uploadedImageElement).getPalette()
-    console.log(colors)
-    const colorHexes = Object.keys(colors).map((e)=>colors[e].getHex())
-    gradient = [...new Set(colorHexes)].join(',')
+    const colorThief = new ColorThief()
+    const colors = colorThief.getPalette(uploadedImageElement)
+    const colorRgb = colors.map((e)=>`rgba(${e.join(',')})`)
+    gradient = colorRgb.join(',')
     console.log(gradient)
   }
 

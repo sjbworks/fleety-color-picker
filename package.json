@@ -19,6 +19,6 @@
     "vite": "^2.6.0"
   },
   "dependencies": {
-    "node-vibrant": "3.1.6"
+    "colorthief": "^2.3.2"
   }
 }
