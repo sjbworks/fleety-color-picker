@@ -1,24 +1,38 @@
 <script lang="ts">
   import ColorThief from 'colorthief'
+  import Vibrant from 'node-vibrant'
 
   let  uploadedImageSource, uploadedImageElement, gradient
 
   const onFileSelected = async(e) => {
     const image = e.target.files[0]
     const reader = new FileReader()
-    reader.readAsDataURL(image)
-    reader.onload = (e) => uploadedImageSource = e.target.result
+    await reader.readAsDataURL(image)
+    reader.onload = async(e) => uploadedImageSource = await e.target.result
   }
 
   const getColorsOfImage = async() => {
+    console.log(uploadedImageElement)
     const colorThief = new ColorThief()
-    const colors = colorThief.getPalette(uploadedImageElement)
-    const colorRgb = colors.map((e)=>`rgba(${e.join(',')})`)
-    gradient = colorRgb.join(',')
-    console.log(gradient)
+    // const colors = colorThief.getPalette(uploadedImageElement)
+    const vcolor = await Vibrant.from(uploadedImageSource).getPalette()
+    // console.log(colors)
+    console.log(vcolor)
+    // const colorRgb = await colors.map((e)=>`rgba(${e.join(',')})`)
+    // gradient = colorRgb.sort().join(',')
   }
 
-  $: uploadedImageElement && uploadedImageSource && getColorsOfImage()
+  $: uploadedImageElement || uploadedImageSource && getColorsOfImage()
+
+  const foo = (node: HTMLElement, parameters: any) => {
+    console.log(uploadedImageSource)
+    return {
+			update(parameters) {
+        console.log(parameters)
+				getColorsOfImage()
+			}
+    }
+  }
 
 </script>
 
@@ -26,11 +40,11 @@
   <div class="image-area">
     <div>
       {#if uploadedImageSource}
-        <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} />
+        <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} use:foo={uploadedImageSource} />
       {/if}
     </div>
     <label for="">
-      <input type="file" name="example" accept="image/jpeg, image/png"  on:change={(e)=>onFileSelected(e)} >
+      <input type="file" name="example" accept="image/jpeg, image/png" on:change={onFileSelected} >
     </label>
   </div>
 </main>
@@ -82,3 +96,4 @@
     }
   }
 </style>
+ 
