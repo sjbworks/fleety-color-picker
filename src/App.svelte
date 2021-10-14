@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ColorThief from 'colorthief'
   import Vibrant from 'node-vibrant'
 
   let  uploadedImageSource, uploadedImageElement, gradient
@@ -12,24 +11,15 @@
   }
 
   const getColorsOfImage = async() => {
-    console.log(uploadedImageElement)
-    const colorThief = new ColorThief()
-    // const colors = colorThief.getPalette(uploadedImageElement)
-    const vcolor = await Vibrant.from(uploadedImageSource).getPalette()
-    // console.log(colors)
-    console.log(vcolor)
-    // const colorRgb = await colors.map((e)=>`rgba(${e.join(',')})`)
-    // gradient = colorRgb.sort().join(',')
+    const colors = await Vibrant.from(uploadedImageSource).getPalette()
+    const colorHexes = Object.keys(colors).map((key)=>colors[key].hex)
+    gradient = colorHexes.sort().join(',')
   }
 
-  $: uploadedImageElement || uploadedImageSource && getColorsOfImage()
-
-  const foo = (node: HTMLElement, parameters: any) => {
-    console.log(uploadedImageSource)
+  const getVibrantColors = (node: HTMLElement, parameters: any) => {
     return {
 			update(parameters) {
-        console.log(parameters)
-				getColorsOfImage()
+        getColorsOfImage()
 			}
     }
   }
@@ -40,7 +30,7 @@
   <div class="image-area">
     <div>
       {#if uploadedImageSource}
-        <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} use:foo={uploadedImageSource} />
+        <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} use:getVibrantColors={uploadedImageElement || uploadedImageSource} />
       {/if}
     </div>
     <label for="">
