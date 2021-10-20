@@ -1,6 +1,6 @@
 <script lang="ts">
   import Vibrant from 'node-vibrant'
-  import Button, { Label,Icon } from '@smui/button'
+  import { Button } from 'svelte-materialify';
 
   let  inputFileElement, uploadedImageSource, uploadedImageElement, gradient
 
@@ -55,8 +55,8 @@
         <img class="uploadedImage" src="{uploadedImageSource}" alt="d" bind:this={uploadedImageElement} use:getVibrantColors={uploadedImageElement || uploadedImageSource} />
       {/if}
     </div>
-    <Button color="primary" on:click={onClickButton} variant="unelevated">
-      <Label>Upload Image</Label>
+    <Button depressed class="indigo darken-1 white-text" on:click={onClickButton} variant="unelevated">
+      Upload Image
     </Button>
     <label for="upload-local-image">
       <input type="file" name="upload-local-image" accept="image/jpeg, image/png" bind:this={inputFileElement} on:change={onFileSelected} style="display: none;" >
