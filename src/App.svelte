@@ -1,7 +1,7 @@
 <script lang="ts">
   import Vibrant from 'node-vibrant'
-  import { Button } from 'svelte-materialify'
   import { Header } from '../src/components'
+  import { Footer } from '../src/components'
 
   let inputFileElement, uploadedImageSource, uploadedImageElement, gradient
 
@@ -43,9 +43,6 @@
         />
       {/if}
     </div>
-    <Button depressed class="indigo darken-1 white-text" on:click={onClickButton} variant="unelevated">
-      Upload Image
-    </Button>
     <label for="upload-local-image">
       <input
         type="file"
@@ -58,6 +55,7 @@
     </label>
   </div>
 </main>
+<Footer {onClickButton} />
 
 <style lang="scss">
   :root {

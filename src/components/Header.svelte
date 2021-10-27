@@ -1,6 +1,6 @@
-<header class="d-flex">
-  <h1>Fleety Color Picker</h1>
-  <p>fleetのようなレイアウトを作成します。</p>
+<header class="d-flex flex-column grey darken-4">
+  <h1 class="mt-4 deep-orange-text text-lighten-5">FLEETY COLOR PICKER</h1>
+  <p class="mt-2 deep-orange-text text-lighten-5">fleetのようなレイアウトを作成します。</p>
 </header>
 
 <style lang="scss">
@@ -9,12 +9,10 @@
   }
 
   h1 {
-    color: #ff4b00;
-    text-transform: uppercase;
     font-size: 4rem;
     font-weight: 100;
     line-height: 1.1;
-    margin: 2rem auto;
+    margin: auto;
     max-width: 14rem;
   }
 
