@@ -17,12 +17,13 @@
   const getColorsOfImage = async () => {
     const colors = await Vibrant.from(uploadedImageSource).getPalette()
     const colorHexes = Object.keys(colors).map((key) => colors[key].hex)
+    console.log(colorHexes.sort())
     gradient = colorHexes.sort().join(',')
   }
 
   const getVibrantColors = (node: HTMLElement, parameters: any) => {
     return {
-      update(parameters) {
+      update() {
         getColorsOfImage()
       },
     }
@@ -32,17 +33,16 @@
 <Header />
 <main style="--gradient: {gradient}">
   <div class="image-area">
-    <div>
-      {#if uploadedImageSource}
-        <img
-          class="uploadedImage"
-          src={uploadedImageSource}
-          alt="d"
-          bind:this={uploadedImageElement}
-          use:getVibrantColors={uploadedImageElement || uploadedImageSource}
-        />
-      {/if}
-    </div>
+    <!-- <div> -->
+    {#if uploadedImageSource}
+      <img
+        src={uploadedImageSource}
+        alt="d"
+        bind:this={uploadedImageElement}
+        use:getVibrantColors={uploadedImageElement || uploadedImageSource}
+      />
+    {/if}
+    <!-- </div> -->
     <label for="upload-local-image">
       <input
         type="file"
@@ -68,12 +68,16 @@
     background: linear-gradient(var(--gradient));
 
     .image-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 77vh;
       backdrop-filter: blur(100px);
     }
   }
 
   img {
-    height: 16rem;
-    width: 16rem;
+    max-width: 500px;
+    height: auto;
   }
 </style>
