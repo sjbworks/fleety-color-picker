@@ -2,6 +2,7 @@
   import Vibrant from 'node-vibrant'
   import { Header } from '../src/components'
   import { Footer } from '../src/components'
+  import { Card } from '../src/components'
 
   let inputFileElement, uploadedImageSource, uploadedImageElement, gradient
 
@@ -35,12 +36,13 @@
   <div class="image-area">
     <!-- <div> -->
     {#if uploadedImageSource}
-      <img
+      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} />
+      <!-- <img
         src={uploadedImageSource}
         alt="d"
         bind:this={uploadedImageElement}
         use:getVibrantColors={uploadedImageElement || uploadedImageSource}
-      />
+      /> -->
     {/if}
     <!-- </div> -->
     <label for="upload-local-image">
@@ -76,8 +78,9 @@
     }
   }
 
-  img {
-    max-width: 500px;
-    height: auto;
-  }
+  // img {
+  //   max-width: 500px;
+  //   height: auto;
+  //   max-height: 60vh;
+  // }
 </style>
