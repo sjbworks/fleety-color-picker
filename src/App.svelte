@@ -36,13 +36,7 @@
   <div class="image-area">
     <!-- <div> -->
     {#if uploadedImageSource}
-      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} />
-      <!-- <img
-        src={uploadedImageSource}
-        alt="d"
-        bind:this={uploadedImageElement}
-        use:getVibrantColors={uploadedImageElement || uploadedImageSource}
-      /> -->
+      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} className="mt-4" />
     {/if}
     <!-- </div> -->
     <label for="upload-local-image">

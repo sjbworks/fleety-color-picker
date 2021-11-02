@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { Card, CardText, CardActions, Button } from 'svelte-materialify'
+  import { Card, CardText } from 'svelte-materialify'
   export let uploadedImageSource: any
   export let uploadedImageElement: any
   export let getVibrantColors: any
+  export let className: string
 </script>
 
-<Card class="pa-10 justify-center grey darken-4 white-text" style="max-width:300px;" flat>
+<Card class={`${className} pa-10 justify-center grey darken-4 white-text`} style="max-width:300px;" flat>
   <div class="img-container">
     <img
       src={uploadedImageSource}
@@ -25,6 +26,7 @@
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 
   .img-container {
