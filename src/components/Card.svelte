@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { Card, CardText } from 'svelte-materialify'
+  import Card, { Content } from '@smui/card'
   export let uploadedImageSource: any
   export let uploadedImageElement: any
   export let getVibrantColors: any
-  export let className: string
+  export let className = ''
+  export { className as class }
 </script>
 
-<Card class={`${className} pa-10 justify-center grey darken-4 white-text`} style="max-width:300px;" flat>
+<Card class={className} style="max-width:300px;" flat>
   <div class="img-container">
     <img
       src={uploadedImageSource}
@@ -15,11 +16,11 @@
       use:getVibrantColors={uploadedImageElement || uploadedImageSource}
     />
   </div>
-  <CardText
+  <Content
     >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
     consequat.
-  </CardText>
+  </Content>
 </Card>
 
 <style lang="scss">

@@ -34,11 +34,9 @@
 <Header />
 <main style="--gradient: {gradient}">
   <div class="image-area">
-    <!-- <div> -->
     {#if uploadedImageSource}
-      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} className="mt-4" />
+      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="card" />
     {/if}
-    <!-- </div> -->
     <label for="upload-local-image">
       <input
         type="file"
@@ -72,9 +70,10 @@
     }
   }
 
-  // img {
-  //   max-width: 500px;
-  //   height: auto;
-  //   max-height: 60vh;
-  // }
+  .card {
+    margin-top: 16px;
+    padding: 40px;
+    color: white;
+    background-color: #212121;
+  }
 </style>
