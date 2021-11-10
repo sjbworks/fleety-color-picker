@@ -9,7 +9,7 @@
   </Button>
 </footer>
 
-<style lang="scss">
+<style lang="scss" module>
   footer {
     position: fixed;
     bottom: 0;

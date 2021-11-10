@@ -22,7 +22,7 @@
     gradient = colorHexes.sort().join(',')
   }
 
-  const getVibrantColors = (node: HTMLElement, parameters: any) => {
+  const getVibrantColors = () => {
     return {
       update() {
         getColorsOfImage()
@@ -51,7 +51,7 @@
 </main>
 <Footer {onClickButton} />
 
-<style lang="scss">
+<style lang="scss" module>
   :root {
     font-family: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
   }
@@ -60,14 +60,14 @@
     text-align: center;
     margin: 0 auto;
     background: linear-gradient(var(--gradient));
+  }
 
-    .image-area {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 77vh;
-      backdrop-filter: blur(100px);
-    }
+  .image-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 77vh;
+    backdrop-filter: blur(100px);
   }
 
   .card {

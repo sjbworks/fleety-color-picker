@@ -1,7 +1,7 @@
 <script lang="ts">
   import Card, { Content } from '@smui/card'
-  export let uploadedImageSource: any
-  export let uploadedImageElement: any
+  export let uploadedImageSource: string
+  export let uploadedImageElement: HTMLImageElement
   export let getVibrantColors: any
   export let className = ''
   export { className as class }
@@ -23,7 +23,7 @@
   </Content>
 </Card>
 
-<style lang="scss">
+<style lang="scss" module>
   img {
     width: 100%;
     height: 100%;

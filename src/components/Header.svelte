@@ -3,7 +3,7 @@
   <p class="my-auto deep-orange-text text-lighten-5">fleetのようなレイアウトを作成します。</p>
 </header>
 
-<style lang="scss">
+<style lang="scss" module>
   :root {
     font-family: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
   }
