@@ -35,7 +35,7 @@
 <main style="--gradient: {gradient}">
   <div class="image-area">
     {#if uploadedImageSource}
-      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="card" />
+      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="mt-4 p-10 text-ibory bg-gray" />
     {/if}
     <label for="upload-local-image">
       <input
@@ -51,7 +51,10 @@
 </main>
 <Footer {onClickButton} />
 
-<style lang="scss" module>
+<style lang="postcss" global>
+  @import 'tailwindcss/base';
+  @import 'tailwindcss/components';
+  @import 'tailwindcss/utilities';
   :root {
     font-family: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
   }

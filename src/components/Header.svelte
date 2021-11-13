@@ -1,9 +1,9 @@
-<header class="d-flex flex-column grey darken-4">
+<header class="flex flex-col bg-gray-500">
   <h1 class="deep-orange-text text-lighten-5">FLEETY COLOR PICKER</h1>
   <p class="my-auto deep-orange-text text-lighten-5">fleetのようなレイアウトを作成します。</p>
 </header>
 
-<style lang="scss" module>
+<style lang="postcss" module>
   :root {
     font-family: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
   }

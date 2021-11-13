@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Card, { Content } from '@smui/card'
+  import Card, { Content, Media, MediaContent } from '@smui/card'
   export let uploadedImageSource: string
   export let uploadedImageElement: HTMLImageElement
   export let getVibrantColors: any
@@ -7,29 +7,23 @@
   export { className as class }
 </script>
 
-<Card class={className} style="max-width:300px;" flat>
+<div class={className} style="max-width:300px;">
   <div class="img-container">
     <img
       src={uploadedImageSource}
       alt="d"
+      class="object-cover w-full h-full"
       bind:this={uploadedImageElement}
       use:getVibrantColors={uploadedImageElement || uploadedImageSource}
     />
   </div>
-  <Content
-    >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat.
-  </Content>
-</Card>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </div>
+</div>
 
-<style lang="scss" module>
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
+<style lang="postcss">
   .img-container {
     width: 220px;
     height: 220px;
