@@ -1,6 +1,6 @@
-<header class="flex flex-col bg-gray-500">
-  <h1 class="deep-orange-text text-lighten-5">FLEETY COLOR PICKER</h1>
-  <p class="my-auto deep-orange-text text-lighten-5">fleetのようなレイアウトを作成します。</p>
+<header class="flex flex-col bg-gray">
+  <h1 class="text-ibory">FLEETY COLOR PICKER</h1>
+  <p class="m-auto text-ibory">fleetのようなレイアウトを作成します。</p>
 </header>
 
 <style lang="postcss" module>

@@ -31,25 +31,27 @@
   }
 </script>
 
-<Header />
-<main style="--gradient: {gradient}">
-  <div class="image-area">
-    {#if uploadedImageSource}
-      <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="mt-4 p-10 text-ibory bg-gray" />
-    {/if}
-    <label for="upload-local-image">
-      <input
-        type="file"
-        name="upload-local-image"
-        accept="image/jpeg, image/png"
-        bind:this={inputFileElement}
-        on:change={onFileSelected}
-        style="display: none;"
-      />
-    </label>
-  </div>
-</main>
-<Footer {onClickButton} />
+<div class="flex flex-col">
+  <Header />
+  <main style="--gradient: {gradient}" class="flex-grow">
+    <div class="flex items-center justify-center backdrop-filter backdrop-blur-3xl">
+      {#if uploadedImageSource}
+        <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="mt-4 p-10 text-ibory bg-gray" />
+      {/if}
+      <label for="upload-local-image">
+        <input
+          type="file"
+          name="upload-local-image"
+          accept="image/jpeg, image/png"
+          bind:this={inputFileElement}
+          on:change={onFileSelected}
+          style="display: none;"
+        />
+      </label>
+    </div>
+  </main>
+  <Footer {onClickButton} />
+</div>
 
 <style lang="postcss" global>
   @import 'tailwindcss/base';

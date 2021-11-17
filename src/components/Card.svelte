@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Card, { Content, Media, MediaContent } from '@smui/card'
   export let uploadedImageSource: string
   export let uploadedImageElement: HTMLImageElement
   export let getVibrantColors: any
@@ -17,10 +16,10 @@
       use:getVibrantColors={uploadedImageElement || uploadedImageSource}
     />
   </div>
-  <div>
+  <!-- <div>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </div>
+  </div> -->
 </div>
 
 <style lang="postcss">
