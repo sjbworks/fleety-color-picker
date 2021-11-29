@@ -2,11 +2,9 @@
   export let uploadedImageSource: string
   export let uploadedImageElement: HTMLImageElement
   export let getVibrantColors: any
-  export let className = ''
-  export { className as class }
 </script>
 
-<div class={className} style="max-width:300px;">
+<div class={$$props.class} style="max-width:300px;">
   <div class="img-container">
     <img
       src={uploadedImageSource}

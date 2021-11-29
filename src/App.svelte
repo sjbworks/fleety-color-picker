@@ -32,8 +32,8 @@
 </script>
 
 <div class="flex flex-col">
-  <Header />
-  <main style="--gradient: {gradient}" class="flex-grow">
+  <Header class="flex-grow" />
+  <main style="--gradient: {gradient}">
     <div class="flex items-center justify-center backdrop-filter backdrop-blur-3xl">
       {#if uploadedImageSource}
         <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="mt-4 p-10 text-ibory bg-gray" />
@@ -50,7 +50,7 @@
       </label>
     </div>
   </main>
-  <Footer {onClickButton} />
+  <Footer class="flex-shrink-0" {onClickButton} />
 </div>
 
 <style lang="postcss" global>
@@ -63,22 +63,7 @@
 
   main {
     text-align: center;
-    margin: 0 auto;
     background: linear-gradient(var(--gradient));
-  }
-
-  .image-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 77vh;
-    backdrop-filter: blur(100px);
-  }
-
-  .card {
-    margin-top: 16px;
-    padding: 40px;
-    color: white;
-    background-color: #212121;
+    flex-grow: 3;
   }
 </style>
