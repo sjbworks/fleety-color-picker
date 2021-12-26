@@ -3,6 +3,9 @@
   import { Header } from '../src/components'
   import { Footer } from '../src/components'
   import { Card } from '../src/components'
+  import Gradient from 'javascript-color-gradient'
+
+  const colorGradient = new Gradient()
 
   let inputFileElement, uploadedImageSource, uploadedImageElement, gradient
 
@@ -19,7 +22,9 @@
     const colors = await Vibrant.from(uploadedImageSource).getPalette()
     const colorHexes = Object.keys(colors).map((key) => colors[key].hex)
     console.log(colorHexes.sort())
-    gradient = colorHexes.sort().join(',')
+    colorHexes.sort()
+    colorGradient.setGradient(colorHexes[0], colorHexes[colorHexes.length - 1])
+    gradient = colorGradient.getArray().join(',')
   }
 
   const getVibrantColors = () => {
@@ -31,10 +36,10 @@
   }
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col h-screen">
   <Header class="flex-grow" />
-  <main style="--gradient: {gradient}">
-    <div class="flex items-center justify-center backdrop-filter backdrop-blur-3xl">
+  <main style="--gradient: {gradient}" class="h-full">
+    <div class="h-full flex items-center justify-center align-middle">
       {#if uploadedImageSource}
         <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="mt-4 p-10 text-ibory bg-gray" />
       {/if}
@@ -57,6 +62,7 @@
   @import 'tailwindcss/base';
   @import 'tailwindcss/components';
   @import 'tailwindcss/utilities';
+
   :root {
     font-family: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
   }
