@@ -2,7 +2,7 @@
   import Vibrant from 'node-vibrant'
   import { Header } from '../src/components'
   import { Footer } from '../src/components'
-  import { Card } from '../src/components'
+  import { ImageCard } from '../src/components'
   import Gradient from 'javascript-color-gradient'
 
   const colorGradient = new Gradient()
@@ -36,26 +36,23 @@
   }
 </script>
 
-<div class="flex flex-col h-screen">
-  <Header class="flex-grow" />
-  <main style="--gradient: {gradient}" class="h-full">
-    <div class="h-full flex items-center justify-center align-middle">
-      {#if uploadedImageSource}
-        <Card {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="mt-4 p-10 text-ibory bg-gray" />
-      {/if}
-      <label for="upload-local-image">
-        <input
-          type="file"
-          name="upload-local-image"
-          accept="image/jpeg, image/png"
-          bind:this={inputFileElement}
-          on:change={onFileSelected}
-          style="display: none;"
-        />
-      </label>
-    </div>
+<div class="min-h-screen flex flex-col">
+  <Header />
+  <main style="--gradient: {gradient}" class="flex-1 h-full flex items-center justify-center align-middle">
+    <ImageCard {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="text-ibory bg-gray m-10" />
+    <label for="upload-local-image">
+      <input
+        type="file"
+        name="upload-local-image"
+        accept="image/jpeg, image/png"
+        bind:this={inputFileElement}
+        on:change={onFileSelected}
+        style="display: none;"
+        aria-label="Please upload image"
+      />
+    </label>
   </main>
-  <Footer class="flex-shrink-0" {onClickButton} />
+  <Footer class="flex-shrink-0 justify-items-end" {onClickButton} />
 </div>
 
 <style lang="postcss" global>

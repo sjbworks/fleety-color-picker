@@ -1,6 +1,6 @@
 <header class={`${$$props.class} flex flex-col bg-gray`}>
-  <h1 class="text-ibory">FLEETY COLOR PICKER</h1>
-  <p class="m-auto text-ibory">fleetのようなレイアウトを作成します。</p>
+  <h1 class="text-ibory">IMAGE COLOR PICKER</h1>
+  <p class="m-auto text-ibory">画像の色を取得します。</p>
 </header>
 
 <style lang="postcss" module>
