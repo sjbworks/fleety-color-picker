@@ -7,7 +7,7 @@
 
   const colorGradient = new Gradient()
 
-  let inputFileElement, uploadedImageSource, uploadedImageElement, gradient
+  let inputFileElement, uploadedImageSource, uploadedImageElement, gradient, colorButton
 
   const onClickButton = () => inputFileElement !== null && inputFileElement.click()
 
@@ -25,6 +25,7 @@
     colorHexes.sort()
     colorGradient.setGradient(colorHexes[0], colorHexes[colorHexes.length - 1])
     gradient = colorGradient.getArray().join(',')
+    colorButton = colorGradient.setGradient(...colorHexes).getArray()
   }
 
   const getVibrantColors = () => {
@@ -36,22 +37,37 @@
   }
 </script>
 
-<div class="min-h-screen flex flex-col">
+<div class="min-h-screen flex flex-col ">
   <Header />
-  <main style="--gradient: {gradient}" class="flex-1 h-full flex items-center justify-center align-middle">
-    <ImageCard {uploadedImageSource} {uploadedImageElement} {getVibrantColors} class="text-ibory bg-gray m-10" />
-    <label for="upload-local-image">
-      <input
-        type="file"
-        name="upload-local-image"
-        accept="image/jpeg, image/png"
-        bind:this={inputFileElement}
-        on:change={onFileSelected}
-        style="display: none;"
-        aria-label="Please upload image"
-      />
-    </label>
+  <main
+    style="--gradient: {gradient}"
+    class="flex-1 h-full w-full flex lg:flex-col items-center justify-center align-middle"
+  >
+    <ImageCard
+      {uploadedImageSource}
+      {uploadedImageElement}
+      {getVibrantColors}
+      class="text-ibory bg-gray mr-10 lg:m-10 lg:-mb-10"
+    />
+    <div class="picked-color-box grid place-items-center grid-cols-5 sm:grid-cols-3 lg:m-10">
+      {#if colorButton}
+        {#each colorButton as color}
+          <span style="background-color: {color}" class="color-button" />
+        {/each}
+      {/if}
+    </div>
   </main>
+  <label for="upload-local-image">
+    <input
+      type="file"
+      name="upload-local-image"
+      accept="image/jpeg, image/png"
+      bind:this={inputFileElement}
+      on:change={onFileSelected}
+      style="display: none;"
+      aria-label="Please upload image"
+    />
+  </label>
   <Footer class="flex-shrink-0 justify-items-end" {onClickButton} />
 </div>
 
@@ -68,5 +84,39 @@
     text-align: center;
     background: linear-gradient(var(--gradient));
     flex-grow: 3;
+  }
+
+  .picked-color-box {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 0.5rem;
+    padding: 2.5rem;
+    width: 400px;
+    height: 400px;
+  }
+
+  .color-button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+
+  @media (max-width: 640px) {
+    .picked-color-box {
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: auto;
+      max-width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  @media (max-width: 372px) {
+    .color-button {
+      width: 40px;
+      height: 40px;
+    }
   }
 </style>

@@ -9,7 +9,7 @@
   <img
     src={uploadedImageSource}
     alt="d"
-    class="object-cover w-full h-full rounded-lg"
+    class="image-area"
     bind:this={uploadedImageElement}
     use:getVibrantColors={uploadedImageElement || uploadedImageSource}
   />
@@ -18,15 +18,24 @@
 <style lang="postcss">
   .img-container {
     border-radius: 0.5rem;
-    width: 400px;
-    height: 400px;
+    max-width: 400px;
+    max-height: 400px;
+    aspect-ratio: 1/1;
+  }
+
+  .image-area {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 0.5rem;
   }
 
   @media (max-width: 640px) {
     .img-container {
       border-radius: 0.5rem;
-      max-width: 300px;
-      max-height: 300px;
+      max-width: 400px;
+      max-height: 400px;
     }
   }
 </style>
