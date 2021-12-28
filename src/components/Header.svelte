@@ -9,38 +9,20 @@
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 300;
-    line-height: 1.1;
-    margin: 1em auto auto;
+    margin: 1rem 2rem auto;
+    text-align: center;
+    line-height: 1.25;
   }
 
   p {
     margin: 1rem auto;
   }
 
-  @media (min-width: 480px) {
+  @media (max-width: 640px) {
     h1 {
-      font-size: 4rem;
-      font-weight: 300;
-      line-height: 1.1;
-      margin: 0.5em auto auto;
-    }
-
-    p {
-      margin: 0.8rem auto 1rem;
-    }
-  }
-
-  @media (min-width: 960px) {
-    h1 {
-      font-size: 4rem;
-      font-weight: 300;
-      margin: 1rem auto auto;
-    }
-
-    p {
-      margin: 0.8rem auto 1rem;
+      font-size: 2rem;
     }
   }
 </style>

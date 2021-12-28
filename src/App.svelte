@@ -47,9 +47,9 @@
       {uploadedImageSource}
       {uploadedImageElement}
       {getVibrantColors}
-      class="text-ibory bg-gray mr-10 lg:m-10 lg:-mb-10"
+      class="text-ibory bg-gray mr-10 lg:m-10"
     />
-    <div class="picked-color-box grid place-items-center grid-cols-5 sm:grid-cols-3 lg:m-10">
+    <div class="picked-color-box grid place-items-center grid-cols-5 sm:grid-cols-2 lg:m-10 xs:m-0 xs:rounded-none">
       {#if colorButton}
         {#each colorButton as color}
           <span style="background-color: {color}" class="color-button" />
@@ -107,7 +107,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      height: auto;
+      height: 100%;
       max-width: 400px;
       max-height: 400px;
     }
