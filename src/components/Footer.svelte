@@ -6,5 +6,5 @@
   <button on:click={onClickButton} class="bg-slate text-ibory h-11 p-4 flex items-center">Upload Image</button>
 </footer>
 
-<style lang="postcss">
+<style lang="postcss" module>
 </style>

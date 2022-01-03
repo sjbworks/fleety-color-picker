@@ -15,7 +15,7 @@
   />
 </div>
 
-<style lang="postcss">
+<style lang="postcss" module>
   .img-container {
     border-radius: 0.5rem;
     max-width: 400px;
