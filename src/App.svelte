@@ -21,7 +21,6 @@
   const getColorsOfImage = async () => {
     const colors = await Vibrant.from(uploadedImageSource).getPalette()
     const colorHexes = Object.keys(colors).map((key) => colors[key].hex)
-    console.log(colorHexes.sort())
     colorHexes.sort()
     colorGradient.setGradient(colorHexes[0], colorHexes[colorHexes.length - 1])
     gradient = colorGradient.getArray().join(',')
