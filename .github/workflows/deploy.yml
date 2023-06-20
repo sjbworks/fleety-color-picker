@@ -36,3 +36,4 @@ jobs:
           path: './dist'
 
       - uses: actions/deploy-pages@v1
+        id: deployment
