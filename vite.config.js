@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     host: true,
   },
-  base: '/fleety-color-picker/',
+  base: process.env.GITHUB_PAGES ? 'fleety-color-picker' : '/',
 })
