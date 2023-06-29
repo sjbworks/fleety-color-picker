@@ -19,6 +19,7 @@
   }
 
   const getColorsOfImage = async () => {
+    if (!uploadedImageSource) return
     const colors = await Vibrant.from(uploadedImageSource).getPalette()
     const colorHexes = Object.keys(colors).map((key) => colors[key].hex)
     colorHexes.sort()

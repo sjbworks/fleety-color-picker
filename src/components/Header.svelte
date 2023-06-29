@@ -15,10 +15,6 @@
     line-height: 1.25;
   }
 
-  p {
-    margin: 1rem auto;
-  }
-
   @media (max-width: 640px) {
     h1 {
       font-size: 2rem;
